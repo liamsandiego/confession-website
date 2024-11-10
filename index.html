@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confession</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            height: 250px;
+            overflow: hidden;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        #yes-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #no-btn {
+            background-color: #f44336;
+            color: white;
+            position: absolute;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Will you go out with me?</h2>
+        <div class="buttons">
+            <button id="yes-btn">Yes</button>
+            <button id="no-btn">No</button>
+        </div>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById("yes-btn");
+        const noBtn = document.getElementById("no-btn");
+        const message = document.getElementById("message");
+
+        // Shows a love message when "Yes" button is clicked
+        yesBtn.addEventListener("click", () => {
+            message.textContent = "Yay, I love you!";
+        });
+
+        // Moves "No" button to dodge clicks
+        noBtn.addEventListener("mouseover", () => {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        });
+    </script>
+</body>
+</html>
