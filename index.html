@@ -3,29 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confession</title>
+    <title>Valentine's Day Invitation</title>
     <style>
+        
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f3f4f6;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6e6;
+            background-image: url('https://example.com/heart-background.jpg'); /* Add a romantic background image */
+            background-size: cover;
+            background-position: center;
         }
         .container {
             text-align: center;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.9);
             padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 300px;
-            height: 250px;
-            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+        }
+        h2 {
+            color: #e60073;
+            font-size: 24px;
+            margin-bottom: 1rem;
         }
         .buttons {
             margin-top: 20px;
+            position: relative;
+            height: 50px;
         }
         button {
             padding: 10px 20px;
@@ -33,31 +43,41 @@
             cursor: pointer;
             border: none;
             border-radius: 5px;
+            transition: background-color 0.3s;
         }
         #yes-btn {
-            background-color: #4CAF50;
+            background-color: #ff66b2;
             color: white;
+            margin-right: 10px;
+        }
+        #yes-btn:hover {
+            background-color: #e60073;
         }
         #no-btn {
-            background-color: #f44336;
+            background-color: #cccccc;
             color: white;
             position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
         #message {
             margin-top: 20px;
             font-size: 18px;
-            color: #4CAF50;
+            color: #e60073;
+            min-height: 24px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Will you be valentines date 🥺</h2>
+        <h2>Will you be my Valentine? 🥺</h2>
         <div class="buttons">
-            <button id="yes-btn">Yes</button>
-            <button id="no-btn">No</button>
+          <button id="yes-btn">Yes</button>
+          <button id="no-btn">No</button>
         </div>
         <p id="message"></p>
+        <div class="heart"></div>
+      </div>      
     </div>
 
     <script>
@@ -65,17 +85,24 @@
         const noBtn = document.getElementById("no-btn");
         const message = document.getElementById("message");
 
-        // Shows a love message when "Yes" button is clicked
         yesBtn.addEventListener("click", () => {
-            message.textContent = "Yay, I love you!";
+            message.textContent = "Yay! I can't wait to spend Valentine's Day with you! ❤️";
         });
 
-        // Moves "No" button to dodge clicks
         noBtn.addEventListener("mouseover", () => {
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-            noBtn.style.left = `${x}px`;
-            noBtn.style.top = `${y}px`;
+            const containerRect = noBtn.parentElement.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+            const offset = 50; // Distance to move the button
+
+            let newX = Math.random() * (containerRect.width - btnRect.width);
+            let newY = Math.random() * (containerRect.height - btnRect.height);
+
+            // Ensure the button stays within the container
+            newX = Math.max(0, Math.min(newX, containerRect.width - btnRect.width));
+            newY = Math.max(0, Math.min(newY, containerRect.height - btnRect.height));
+
+            noBtn.style.left = `${newX}px`;
+            noBtn.style.top = `${newY}px`;
         });
     </script>
 </body>
